@@ -1,31 +1,49 @@
+html {
+  height: 50%;
+}
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
   background: green;
 }
 .card {
   background: white;
-  height: 350px;
-  width: 250px;
-  display: flex;
-  border-radius: 10px;
-  padding: 20px;
-  position: relative;
-}
-.top-suit {
+  font-family: sans-serif;
   position: absolute;
-  top: 0px;
-  left: 20px;
-  font-size: 85px;
+  width: 130px;
+  height: 210px;
+  border-radius: 2px;
+  border: 2px solid black;
 }
-.botom-suit {
+
+.card.spades,
+.card.clubs {
+  color: black;
+}
+.card.hearts,
+.card.diamonds {
+  color: red;
+}
+.card-value-suit {
+  display: inline-block;
   position: absolute;
-  bottom: 10px;
-  right: 20px;
-  font-size: 85px;
 }
-#number {
-  font-size: 85px;
+.card-value-suit.top {
+  top: 5px;
+  left: 5px;
+}
+.card-suit {
+  font-size: 50px;
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
+  left: 37%;
+}
+.card-value-suit.bot {
+  transform: rotate(180deg);
+  bottom: 5px;
+  right: 5px;
 }

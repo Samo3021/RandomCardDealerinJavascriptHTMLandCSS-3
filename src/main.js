@@ -3,29 +3,64 @@
 import "./style.css";
 
 window.onload = function() {
-  let color = ["red", "black"];
-  let pinta = ["\u2660", "\u2663", "\u2665", "\u25ca"];
-  let numeros = [
-    "A",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "J",
-    "Q",
-    "K"
-  ];
-  var rdm_pinta = Math.floor(Math.random() * pinta.length);
-  var numero = Math.floor(Math.random() * numeros.length);
-  document.querySelector("#number").innerHTML =
-    "<p id=" + "centro" + ">" + numeros[numero] + "</p>";
-  document.querySelector("#superior").innerHTML =
-    "<p style=color: " + " id=" + "arriba" + ">" + pinta[rdm_pinta] + "</p>";
-  document.querySelector("#inferior").innerHTML =
-    "<p style=color: " + " id=" + "abajo" + ">" + pinta[rdm_pinta] + "</p>";
+  function content() {
+    const tag = ["Hearts", "Diamonds", "Spades", "Clubs"];
+    const values = [
+      "A",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "J",
+      "Q",
+      "K"
+    ];
+    const card = []; /* Array que guarda los dos valores*/
+    for (let index = 0; index < tag.length; index++) {
+      for (let i = 0; i < values.length; i++) {
+        const value = values[i];
+        const suit = tag[index];
+        card.push({ value, suit });
+      }
+    }
+    return card;
+  }
+
+  /*Function that generates a random of both numbers and tags*/
+  function randomCard(cards) {
+    const allCombinations = Math.floor(Math.random() * 52);
+    const cardValue =
+      cards[allCombinations]
+        .value; /* it's .value because 'value' is a constant*/
+    const tag =
+      cards[allCombinations].suit; /* it's .suit because 'suit' is a constant*/
+    let figure;
+    tag === "Diamonds"
+      ? (figure = "&diams;")
+      : (figure =
+          "&" +
+          tag.toLowerCase() +
+          ";"); /*Give the shape of the card figures */
+    const card = document.createElement("DIV");
+    card.classList.add("card", tag.toLowerCase());
+    card.innerHTML =
+      '<span class="card-value-suit top">' +
+      figure +
+      "</span>" +
+      '<span class="card-suit">' +
+      cardValue +
+      "</span>" +
+      '<span class="card-value-suit bot">' +
+      figure +
+      "</span>";
+    document.body.appendChild(card);
+  }
+
+  const cards = content();
+  randomCard(cards);
 };
